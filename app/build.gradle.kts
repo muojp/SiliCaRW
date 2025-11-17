@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "jp.muo.silicarw"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "jp.muo.silicarw"
@@ -19,9 +17,36 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        // Local/dev keystore shipped in repository (android.jks)
+        create("android") {
+            storeFile = rootProject.file("android.jks")
+            storePassword = "android"
+            keyAlias = "android"
+            keyPassword = "android"
+        }
+
+        // Release keystore optionally provided as android/app/release.jks
+        // and credentials via environment variables (CI-friendly).
+        create("release") {
+            storeFile = file("release.jks")
+            storePassword = System.getenv("STORE_PASSWORD")
+            keyAlias = System.getenv("KEY_ALIAS")
+            keyPassword = System.getenv("KEY_PASSWORD")
+        }
+    }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("android")
+        }
         release {
+            // Prefer release keystore if present; otherwise fall back to android (dev) keystore
+            signingConfig = if (file("release.jks").exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("android")
+            }
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -29,12 +54,13 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
