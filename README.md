@@ -26,7 +26,7 @@ SiliCaRWは、SiliCa互換のNFCタグのIDm（識別番号）を読み書きで
 
 1. このリポジトリをクローン:
    ```bash
-   git clone https://github.com/yourusername/SiliCaRW.git
+   git clone https://github.com/muojp/SiliCaRW.git
    cd SiliCaRW
    ```
 
