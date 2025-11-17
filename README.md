@@ -1,12 +1,12 @@
 # SiliCaRW
 
-SiliCa Tag Writer - FeliCa/SiliCa互換NFCタグのIDm値を読み書きするAndroidアプリケーション
+SiliCa Tag Writer - SiliCa互換NFCタグのIDm値を読み書きするAndroidアプリケーション
 
 ![デモ](docs/demo.jpg)
 
 ## 概要
 
-SiliCaRWは、FeliCa/SiliCa互換のNFCタグのIDm（識別番号）を読み書きできるAndroidアプリケーションです。NFC-F技術を使用して互換カードと通信し、タグ識別子を簡単に変更できるインターフェースを提供します。
+SiliCaRWは、SiliCa互換のNFCタグのIDm（識別番号）を読み書きできるAndroidアプリケーションです。NFC-F技術を使用して互換カードと通信し、タグ識別子を簡単に変更できるインターフェースを提供します。
 
 ## 機能
 
@@ -20,7 +20,7 @@ SiliCaRWは、FeliCa/SiliCa互換のNFCタグのIDm（識別番号）を読み�
 
 - NFC機能を搭載したAndroidデバイス
 - Android 11（APIレベル30）以上
-- NFC-F互換タグ（FeliCa/SiliCa）
+- NFC-F互換タグ（SiliCa）
 
 ## インストール
 
@@ -52,15 +52,15 @@ SiliCaRWは、FeliCa/SiliCa互換のNFCタグのIDm（識別番号）を読み�
 - **パッケージ**: `jp.muo.silicarw`
 - **言語**: Kotlin
 - **UIフレームワーク**: Jetpack Compose
-- **NFC技術**: NFC-F（FeliCa）
+- **NFC技術**: NFC-F
 - **ターゲットSDK**: Android 14（APIレベル36）
 - **最小SDK**: Android 11（APIレベル30）
 
 ### NFC通信
 
-アプリケーションはAndroid NFC APIを使用してFeliCaタグと通信します:
+アプリケーションはAndroid NFC APIを使用してSiliCaタグと通信します:
 - タグIDからIDm値を読み取り
-- FeliCa書き込みコマンドを使用してブロック0x83に書き込み
+- SiliCa書き込みコマンドを使用してブロック0x83に書き込み
 - 適切な接続処理と検証を実装
 
 ## ライセンス
